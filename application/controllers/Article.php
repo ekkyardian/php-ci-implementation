@@ -4,28 +4,16 @@ class Article extends CI_Controller
 {
     public function index()
     {
-        $articleList['getArticle'] = [
-            [
-                'title'     => 'Computer Science',
-                'content'   => '<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus expedita
-                quidem inventore laboriosam asperiores! Nulla, error. Magnam, modi maxime incidunt soluta vitae,
-                voluptas ea mollitia quam, ab sunt quibusdam nesciunt.</p>'
-            ],
-
-            [
-                'title'     => 'Decision Support System',
-                'content'   => '<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus expedita
-                quidem inventore laboriosam asperiores! Nulla, error. Magnam, modi maxime incidunt soluta vitae,
-                voluptas ea mollitia quam, ab sunt quibusdam nesciunt.</p>'
-            ],
-
-            [
-                'title'     => 'Machine Learning',
-                'content'   => '<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus expedita
-                quidem inventore laboriosam asperiores! Nulla, error. Magnam, modi maxime incidunt soluta vitae,
-                voluptas ea mollitia quam, ab sunt quibusdam nesciunt.</p>'
-            ]
-        ];
+        $this->load->database();
+        $query = $this->db->get('article');
+        /*
+         * Kode query builder di atas sama dengan kode:
+         * $query = $this->db->query("SELECT * FROM article");
+         * 
+         * Hasil/outputnya sama saja, hanya perintahnya saja yang lebih
+         * disederhanakan
+         */
+        $articleList['getArticle'] = $query->result_array();
 
         $this->load->view('article', $articleList);
     }
