@@ -12,15 +12,25 @@
 
 $no = 1;
 
-foreach ($getArticle as $key => $article) {
-    echo "<strong>[$no] " . $article['title'] . '</strong><br>';
-    echo $article['content'];
-    echo "<a href='#'>Read more..</a>";
-    echo '<hr>';
-    $no++;
-}
+foreach ($getArticle as $key => $article) :?>
+    <!-- 
+        site_url()
+        Penggunaan site_url() bertujuan agar setiap kali kita membuat link
+        (melalui controller/view), link tersebut menjadi absolut dan tidak
+        relatif. Pertama atur base url pada file:
 
-?>
+        application/config/config.php - base_url
+
+        Selanjutnya panggil method helper('url') pada method yang akan kita
+        gunakan, atau masukkan pada __construct method saja supaya lebih
+        praktis.
+     -->
+
+    <strong><a href="<?= site_url('article/detail/' . $article['url']); ?>">
+        <?= '[' . $no . '] ' . $article['title']; ?>
+    </a></strong><br>
+
+<?php $no++; endforeach; ?>
 
 </body>
 </html>
