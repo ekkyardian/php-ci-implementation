@@ -41,4 +41,15 @@ class Article_model extends CI_Model
          * return $this->db->get_where('article', ['url'=>$id])
          */
     }
+
+    public function insertArticle($data)
+    {
+        /*
+        * Keterangan argumen pada query builder insert:
+        * Argumen ke-1 = nama table
+        * Argumen ke-2 = array yang menampung data inputan
+        */
+        $this->db->insert('article', $data);
+        return $this->db->insert_id();
+    }
 }

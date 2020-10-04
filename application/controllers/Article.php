@@ -37,4 +37,27 @@ class Article extends CI_Controller
 
         $this->load->view('detail', $arr);
     }
+
+    public function add()
+    {
+        if($this->input->post()){ // Validasi inputan tidak kosong
+            $dataArticle = [
+                'title'     => $this->input->post('title'),
+                'content'   => $this->input->post('content'),
+                'url'       => $this->input->post('url'),
+                'cover'     => $this->input->post('cover')
+            ];
+
+            $id = $this->Article_model->insertArticle($dataArticle);
+            
+            if ($id) {
+                echo "Data has been saved to database";
+            }
+            else {
+                echo "Error! Data cannot be saved";
+            }
+        }
+
+        $this->load->view('form_add');
+    }
 }
