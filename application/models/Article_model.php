@@ -50,6 +50,8 @@ class Article_model extends CI_Model
         * Argumen ke-2 = array yang menampung data inputan
         */
         $this->db->insert('article', $data);
+        
+        // Memberikan umpan balik, apakah proses berhasil atau tidak
         return $this->db->insert_id();
     }
 }

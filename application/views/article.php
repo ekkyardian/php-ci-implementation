@@ -10,7 +10,7 @@
 <h1>List of Article</h1>
 
 <p>
-    <a href="add">[+] Add new article</a>
+    <a href="<?php echo site_url('article/add'); ?>">[+] Add new article</a>
 </p>
 
 <?php

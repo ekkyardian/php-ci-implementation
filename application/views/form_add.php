@@ -9,7 +9,7 @@
     <form action="" method="POST">
         <h1>Add New Article</h1>
         <p>
-            <a href="index">< Back to List Article</a>
+            <a href="<?php echo site_url('article/index')?>">< Back to List Article</a>
         </p>
         <table>
             <tr>
