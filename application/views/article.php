@@ -34,7 +34,8 @@ foreach ($getArticle as $key => $article) :?>
     <strong><a href="<?= site_url('article/detail/' . $article['url']); ?>">
         <?= '[' . $no . '] ' . $article['title']; ?>
     </a></strong>
-    - <a href="<?= site_url('article/edit/' . $article['id_article']); ?>">[edit]</a>
+    - <a href="<?= site_url('article/edit/' . $article['id_article']); ?>">[edit]</a> 
+    <a href="<?= site_url('article/delete/' . $article['id_article']); ?>">[delete]</a>
     <br>
 
 <?php $no++; endforeach; ?>

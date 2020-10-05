@@ -91,4 +91,10 @@ class Article extends CI_Controller
 
         $this->load->view('form_edit', $data);
     }
+
+    public function delete($id)
+    {
+        $this->Article_model->deleteArticle($id);
+        redirect(site_url('article/index'));
+    }
 }

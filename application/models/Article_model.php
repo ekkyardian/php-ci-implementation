@@ -67,4 +67,11 @@ class Article_model extends CI_Model
         // deklarasikan di controler Article/edit.
         return $this->db->affected_rows();
     }
+
+    public function deleteArticle($id)
+    {
+        $this->db->where('id_article', $id);
+        $this->db->delete('article');
+        return $this->db->affected_rows();
+    }
 }
