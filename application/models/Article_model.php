@@ -17,9 +17,9 @@ class Article_model extends CI_Model
          */
     }
 
-    public function getSingleArticle($url)
+    public function getSingleArticle($field, $value)
     {
-        $this->db->where('url', $url);
+        $this->db->where($field, $value);
         /*
          * Argumen pertama: nama_kolom yang dijadikan kunci pencarian WHERE
          * Argumen kedua: isi yang ingin dicari
@@ -51,7 +51,20 @@ class Article_model extends CI_Model
         */
         $this->db->insert('article', $data);
         
-        // Memberikan umpan balik, apakah proses berhasil atau tidak
+        // Memberikan umpan balik, melakukan pengecekan apakah terjadi penam-
+        // bahan data ke database? Jika iya, maka akan mentrigger kondisi if
+        // yang sudah dideklarasikan di controler Article/add.
         return $this->db->insert_id();
+    }
+
+    public function updateArticle($id, $dataArticle)
+    {
+        $this->db->where('id_article', $id);
+        $this->db->update('article', $dataArticle);
+
+        // Memberikan umpan balik, melakukan pengecekan apakah terjadi peruba-
+        // han data? Jika iya, maka akan mentrigger kondisi if yang sudah di-
+        // deklarasikan di controler Article/edit.
+        return $this->db->affected_rows();
     }
 }

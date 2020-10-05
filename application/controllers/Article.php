@@ -24,6 +24,9 @@ class Article extends CI_Controller
 
     public function index()
     {
+        // $query = $this->Article_model->getSingleArticle('id_article', $id);
+        // $data['article'] = $query->row_array();
+
         $query = $this->Article_model->getArticles();
         $arr['getArticle'] = $query->result_array();
         
@@ -32,7 +35,7 @@ class Article extends CI_Controller
 
     public function detail($url)
     {
-        $query = $this->Article_model->getSingleArticle($url);
+        $query = $this->Article_model->getSingleArticle('url', $url);
         $arr['article'] = $query->row_array();
 
         $this->load->view('detail', $arr);
@@ -40,7 +43,7 @@ class Article extends CI_Controller
 
     public function add()
     {
-        if($this->input->post()){ // Validasi inputan tidak kosong
+        if ($this->input->post()) { // Validasi inputan tidak kosong
             $dataArticle = [
                 'title'     => $this->input->post('title'),
                 'content'   => $this->input->post('content'),
@@ -59,5 +62,33 @@ class Article extends CI_Controller
         }
 
         $this->load->view('form_add');
+    }
+
+    public function edit($id)
+    {
+        // Get data from database (edit)
+        $query = $this->Article_model->getSingleArticle('id_article', $id);
+        $data['article'] = $query->row_array();
+
+        // Update data to database
+        if ($this->input->post()) {
+            $dataArticle = [
+                'title'     => $this->input->post('title'),
+                'content'   => $this->input->post('content'),
+                'url'       => $this->input->post('url'),
+                'cover'     => $this->input->post('cover')
+            ];
+
+            $id = $this->Article_model->updateArticle($id, $dataArticle);
+
+            if ($id) {
+                echo "Data has been updated";
+            }
+            else {
+                echo "Error! Data cannot be updated";
+            }
+        }
+
+        $this->load->view('form_edit', $data);
     }
 }
