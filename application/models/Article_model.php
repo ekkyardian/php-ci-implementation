@@ -10,11 +10,15 @@ class Article_model extends CI_Model
 
     public function getArticles()
     {
+        $filter = $this->input->get('search');
+        $this->db->like('title', $filter);
+        
         return $this->db->get('article');
         /*
          * Kode query builder di atas sama dengan kode:
          * return $this->db->query("SELECT * FROM article");
          */
+
     }
 
     public function getSingleArticle($field, $value)

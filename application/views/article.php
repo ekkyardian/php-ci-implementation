@@ -12,6 +12,13 @@
 <p>
     <a href="<?php echo site_url('article/add'); ?>">[+] Add new article</a>
 </p>
+<form action="" method="get">
+    <p>
+        <label for="search">Search article(s) by Title: </label>
+        <input type="text" name="search" id="search" placeholder="Type here..">
+        <input type="submit" value="Go">
+    </p>
+</form>
 
 <?php
 
