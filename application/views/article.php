@@ -1,224 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
+<!-- Header -->
+<?php $this->load->view('partials/header'); ?>
 
-<head>
-
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>Clean Blog - Start Bootstrap Theme</title>
-
-  <!-- Bootstrap core CSS -->
-  <link href="./assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom fonts for this template -->
-  <link href="./assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-
-  <!-- Custom styles for this template -->
-  <link href="./assets/css/clean-blog.min.css" rel="stylesheet">
-
-</head>
-
-<body>
-
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-    <div class="container">
-      <a class="navbar-brand" href="index.html">Start Bootstrap</a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        Menu
-        <i class="fas fa-bars"></i>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="about.html">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="post.html">Sample Post</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="contact.html">Contact</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Page Header -->
-  <header class="masthead" style="background-image: url('./assets/img/home-bg.jpg')">
-    <div class="overlay"></div>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <div class="site-heading">
-            <h1>Clean Blog</h1>
-            <span class="subheading">A Blog Theme by Start Bootstrap</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- Main Content -->
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('<?php echo base_url(); ?>assets/img/home-bg.jpg')">
+  <div class="overlay"></div>
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-        <div class="post-preview">
-          <a href="post.html">
-            <h2 class="post-title">
-              Man must explore, and this is exploration at its greatest
-            </h2>
-            <h3 class="post-subtitle">
-              Problems look mighty small from 150 miles up
-            </h3>
-          </a>
-          <p class="post-meta">Posted by
-            <a href="#">Start Bootstrap</a>
-            on September 24, 2019</p>
-        </div>
-        <hr>
-        <div class="post-preview">
-          <a href="post.html">
-            <h2 class="post-title">
-              I believe every human has a finite number of heartbeats. I don't intend to waste any of mine.
-            </h2>
-          </a>
-          <p class="post-meta">Posted by
-            <a href="#">Start Bootstrap</a>
-            on September 18, 2019</p>
-        </div>
-        <hr>
-        <div class="post-preview">
-          <a href="post.html">
-            <h2 class="post-title">
-              Science has not yet mastered prophecy
-            </h2>
-            <h3 class="post-subtitle">
-              We predict too much for the next year and yet far too little for the next ten.
-            </h3>
-          </a>
-          <p class="post-meta">Posted by
-            <a href="#">Start Bootstrap</a>
-            on August 24, 2019</p>
-        </div>
-        <hr>
-        <div class="post-preview">
-          <a href="post.html">
-            <h2 class="post-title">
-              Failure is not an option
-            </h2>
-            <h3 class="post-subtitle">
-              Many say exploration is part of our destiny, but it’s actually our duty to future generations.
-            </h3>
-          </a>
-          <p class="post-meta">Posted by
-            <a href="#">Start Bootstrap</a>
-            on July 8, 2019</p>
-        </div>
-        <hr>
-        <!-- Pager -->
-        <div class="clearfix">
-          <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
+        <div class="site-heading">
+          <h1>Tech and Tale</h1>
+          <span class="subheading">A Story About Technology and Tale</span>
         </div>
       </div>
     </div>
   </div>
+</header>
 
-  <hr>
-
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <ul class="list-inline text-center">
-            <li class="list-inline-item">
-              <a href="#">
-                <span class="fa-stack fa-lg">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a href="#">
-                <span class="fa-stack fa-lg">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a href="#">
-                <span class="fa-stack fa-lg">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-          </ul>
-          <p class="copyright text-muted">Copyright &copy; Your Website 2020</p>
+<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+      <form action="" method="get">
+        <p>
+        <div class="form-group">
+          <label for="search">
+            <h4>Search article(s) by title</h4>
+          </label><br>
+          <?php echo form_input('search', null, 'class="form-control" id="search" placeholder="Type here.."') ?>
         </div>
+        <input class="btn btn-primary" type="submit" value="Search">
+        </p>
+      </form>
+      <div class="post-preview">
+        <?php
+        foreach ($getArticle as $key => $article) : ?>
+          <!-- 
+              site_url()
+              Penggunaan site_url() bertujuan agar setiap kali kita membuat link
+              (melalui controller/view), link tersebut menjadi absolut dan tidak
+              relatif. Pertama atur base url pada file:
+
+              application/config/config.php - base_url
+
+              Selanjutnya panggil method helper('url') pada method yang akan kita
+              gunakan, atau masukkan pada __construct method saja supaya lebih
+              praktis.
+          -->
+          <hr>
+          <a href="<?php echo site_url('article/detail/' . $article['url']); ?>">
+            <h2 class="post-title">
+              <?php echo $article['title']; ?>
+            </h2>
+            <h3 class="post-subtitle">
+              <?php echo $article['subtitle']; ?>
+            </h3>
+          </a>
+          <p class="post-meta">Posted by
+            <a href="#"><?php echo $article['author']; ?></a>
+            on <?php echo $article['date']; ?>
+          </p>
+          <p>
+            <a href="<?php echo site_url('article/edit/' . $article['id_article']); ?>">Edit</a> |
+            <a href="<?php echo site_url('article/delete/' . $article['id_article']); ?>" onclick="return confirm('Delete: <?php echo $article['title']; ?>?')">Delete</a>
+          </p>
+        <?php endforeach; ?>
       </div>
     </div>
-  </footer>
+  </div>
+</div>
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="./assets/vendor/jquery/jquery.min.js"></script>
-  <script src="./assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<hr>
 
-  <!-- Custom scripts for this template -->
-  <script src="./assets/js/clean-blog.min.js"></script>
-
-</body>
-
-</html>
-
-
-
-
-<p>
-    <a href="<?php echo site_url('article/add'); ?>">[+] Add new article</a>
-</p>
-<form action="" method="get">
-    <p>
-        <label for="search">Search article(s) by Title: </label>
-        <input type="text" name="search" id="search" placeholder="Type here..">
-        <input type="submit" value="Go">
-    </p>
-</form>
-
-<?php
-
-$no = 1;
-
-foreach ($getArticle as $key => $article) :?>
-    <!-- 
-        site_url()
-        Penggunaan site_url() bertujuan agar setiap kali kita membuat link
-        (melalui controller/view), link tersebut menjadi absolut dan tidak
-        relatif. Pertama atur base url pada file:
-
-        application/config/config.php - base_url
-
-        Selanjutnya panggil method helper('url') pada method yang akan kita
-        gunakan, atau masukkan pada __construct method saja supaya lebih
-        praktis.
-     -->
-
-    <strong><a href="<?= site_url('article/detail/' . $article['url']); ?>">
-        <?= '[' . $no . '] ' . $article['title']; ?>
-    </a></strong>
-    - <a href="<?= site_url('article/edit/' . $article['id_article']); ?>">[edit]</a> 
-    <a href="<?= site_url('article/delete/' . $article['id_article']); ?>">[delete]</a>
-    <br>
-
-<?php $no++; endforeach; ?>
+<!-- Footer -->
+<?php $this->load->view('partials/footer'); ?>

@@ -5,7 +5,11 @@ class Article_model extends CI_Model
     public function __construct()
     {
         parent::__construct();
-        $this->load->database();
+        /*
+         * Libraries database di load melalui autoload librari dengan asusmsi
+         * bahwa semua/sebagian besar controller akan menggunakan librari
+         * tersebut
+         */
     }
 
     public function getArticles()
@@ -33,7 +37,7 @@ class Article_model extends CI_Model
         return $this->db->get('article');
         
         /*
-         * Dia baris kode di atas merupakan bentuk penyederhanaan dari kode:
+         * Dua baris kode di atas merupakan bentuk penyederhanaan dari kode:
          * $query = $this->db->query("SELECT * FROM article WHERE url = '$url'")
          * 
          * selain dua baris kode di atas ada juga cara lain yang bisa digunakan.
@@ -46,14 +50,14 @@ class Article_model extends CI_Model
          */
     }
 
-    public function insertArticle($data)
+    public function insertArticle($dataArticle)
     {
         /*
         * Keterangan argumen pada query builder insert:
         * Argumen ke-1 = nama table
         * Argumen ke-2 = array yang menampung data inputan
         */
-        $this->db->insert('article', $data);
+        $this->db->insert('article', $dataArticle);
         
         // Memberikan umpan balik, melakukan pengecekan apakah terjadi penam-
         // bahan data ke database? Jika iya, maka akan mentrigger kondisi if

@@ -6,7 +6,7 @@ class Article extends CI_Controller
     {
         /*
          * Kita dapat memanfaatkan magic method __construct untuk memanggil
-         * method bawaan CI yang kita rasa kana sangat sering dignakan. Pada
+         * method bawaan CI yang kita rasa akan sangat sering dignakan. Pada
          * kasus ini, kita akan menambahkan method helper() ke dalam magic
          * method __construct
          * 
@@ -17,10 +17,17 @@ class Article extends CI_Controller
          */
 
         parent::__construct();
+
+        /*
+         * Helper url dan form di load melalui autoload helper dengan asusmsi
+         * bahwa semua/sebagian besar file controller akan menggunakan helper
+         * tersebut untuk kebutuhan view
+         */
         
-        $this->load->helper('url');
         $this->load->model('Article_model');
     }
+
+    // -------------------------------------------------------------------------
 
     public function index()
     {
@@ -33,6 +40,8 @@ class Article extends CI_Controller
         $this->load->view('article', $arr);
     }
 
+    // -------------------------------------------------------------------------
+
     public function detail($url)
     {
         $query = $this->Article_model->getSingleArticle('url', $url);
@@ -41,20 +50,50 @@ class Article extends CI_Controller
         $this->load->view('detail', $arr);
     }
 
+    // -------------------------------------------------------------------------
+
     public function add()
     {
         if ($this->input->post()) { // Validasi inputan tidak kosong
+            
             $dataArticle = [
-                'title'     => $this->input->post('title'),
-                'content'   => $this->input->post('content'),
-                'url'       => $this->input->post('url'),
-                'cover'     => $this->input->post('cover')
+                'title'         => $this->input->post('title'),
+                'subtitle'      => $this->input->post('subtitle'),
+                'url'           => $this->input->post('url'),
+                'content'       => $this->input->post('content'),
+                'author'        => $this->input->post('author' )
             ];
+
+            // Konfigurasi gambar cover yang akan diupload
+            $coverConfig = [
+                'upload_path'   => './uploads/',
+                'allowed_types' => 'gif|jpg|png',
+                'max_size'      => '100',
+                'max_width'     => '1024',
+                'max_height'    => '768'
+            ];
+
+            $this->load->library('upload', $coverConfig);
+
+            /*
+             * Validasi terkait gambar yang diupload. Jika gambar yang diupload
+             * tidak memenuhi spesifikasi yang tertera pada array $coverConfig
+             * maka akan menampilkan pesan error. Tetapi jika semuanya sudah
+             * sesuai spesifikasi maka data file_name gambar tersebut akan
+             * ditambahkan kedalam array $coverConfig
+             */
+            if (!$this->upload->do_upload('cover')) {
+                echo $this->upload->display_error();
+            }
+            else {
+                $dataArticle += ['cover' => $this->upload->data()['file_name']];
+            }
 
             $id = $this->Article_model->insertArticle($dataArticle);
             
             if ($id) {
                 echo "Data has been saved to database";
+                redirect('/');
             }
             else {
                 echo "Error! Data cannot be saved";
@@ -63,6 +102,8 @@ class Article extends CI_Controller
 
         $this->load->view('form_add');
     }
+
+    // -------------------------------------------------------------------------
 
     public function edit($id)
     {
@@ -74,10 +115,35 @@ class Article extends CI_Controller
         if ($this->input->post()) {
             $dataArticle = [
                 'title'     => $this->input->post('title'),
-                'content'   => $this->input->post('content'),
+                'subtitle'  => $this->input->post('subtitle'),
                 'url'       => $this->input->post('url'),
-                'cover'     => $this->input->post('cover')
+                'content'   => $this->input->post('content'),
+                'author'    => $this->input->post('author')
             ];
+
+            // Konfigurasi gambar cover yang akan diupload
+            $coverConfig = [
+                'upload_path'   => './uploads/',
+                'allowed_types' => 'gif|jpg|png',
+                'max_size'      => '100',
+                'max_width'     => '1024',
+                'max_height'    => '768'
+            ];
+
+            $this->load->library('upload', $coverConfig);
+
+            /*
+             * Validasi terkait gambar yang diupload. Jika gambar yang diupload
+             * tidak memenuhi spesifikasi yang tertera pada array $coverConfig
+             * maka akan menampilkan pesan error. Tetapi jika semuanya sudah
+             * sesuai spesifikasi maka data file_name gambar tersebut akan
+             * ditambahkan kedalam array $coverConfig
+             */
+            if (!$this->upload->do_upload('cover')) {
+                echo $this->upload->display_error();
+            } else {
+                $dataArticle += ['cover' => $this->upload->data()['file_name']];
+            }
 
             $id = $this->Article_model->updateArticle($id, $dataArticle);
 
@@ -91,6 +157,8 @@ class Article extends CI_Controller
 
         $this->load->view('form_edit', $data);
     }
+
+    // -------------------------------------------------------------------------
 
     public function delete($id)
     {
