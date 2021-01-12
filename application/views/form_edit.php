@@ -3,6 +3,11 @@
 
 <!-- Page Header -->
 <?php
+/*
+ * Mengecek ketersediaan cover. Apabila artikel memiliki cover maka akan di-
+ * tampilkan cover tersebut. Namun, bila artikel tidak memiliki cover maka
+ * yang akan ditampilkan adalah cover default
+ */
 if (!empty($article['cover'])) {
     $cover = base_url() . 'uploads/' . $article['cover'];
 } else {
@@ -26,30 +31,37 @@ if (!empty($article['cover'])) {
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-lg-8 col-md-10 mx-auto">
+            <?php
+            if ($this->input->post() and $this->form_validation->run() === FALSE) {
+                echo "<div class='alert alert-warning'>";
+                echo validation_errors();
+                echo "</div>";
+            }
+            ?>
             <?php echo form_open_multipart(); ?>
             <div class="form-group">
                 <label for="title">Title</label>
-                <?php echo form_input('title', $article['title'], 'class="form-control" id="title"'); ?>
+                <?php echo form_input('title', set_value('title', $article['title']), 'class="form-control" id="title"'); ?>
             </div>
             <div class="form-group">
                 <label for="subtitle">Subtitle</label>
-                <textarea class="form-control" name="subtitle" id="subtitle" rows="2"><?php echo $article['subtitle']; ?></textarea>
+                <textarea class="form-control" name="subtitle" id="subtitle" rows="2"><?php echo set_value('subtitle', $article['subtitle']); ?></textarea>
             </div>
             <div class="form-group">
                 <label for="url">URL</label>
-                <?php echo form_input('url', $article['url'], 'class="form-control" id="url"'); ?>
+                <?php echo form_input('url', set_value('url', $article['url']), 'class="form-control" id="url"'); ?>
             </div>
             <div class="form-group">
                 <label for="content">Content</label>
-                <?php echo form_textarea('content', $article['content'], 'class="form-control" id="content"'); ?>
+                <?php echo form_textarea('content', set_value('content', $article['content']), 'class="form-control" id="content"'); ?>
             </div>
             <div class="form-group">
                 <label for="author">Author</label>
-                <?php echo form_input('author', $article['author'], 'class="form-control" id="author"'); ?>
+                <?php echo form_input('author', set_value('author', $article['author']), 'class="form-control" id="author"'); ?>
             </div>
             <div class="form-group">
                 <label for="cover">Cover</label>
-                <?php echo form_upload('cover', $article['cover'], 'class="form-control" id="cover"'); ?>
+                <?php echo form_upload('cover', set_value('cover', $article['cover']), 'class="form-control" id="cover"'); ?>
             </div>
             <button class="btn btn-primary" type="submit">Update</button>
         </div>

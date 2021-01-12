@@ -12,10 +12,12 @@ class Article_model extends CI_Model
          */
     }
 
-    public function getArticles()
+    public function getArticles($limit, $offset)
     {
         $filter = $this->input->get('search');
         $this->db->like('title', $filter);
+        $this->db->limit($limit, $offset);
+        $this->db->order_by('date', 'DESC');
         
         return $this->db->get('article');
         /*
@@ -48,6 +50,13 @@ class Article_model extends CI_Model
          * atau
          * return $this->db->get_where('article', ['url'=>$id])
          */
+    }
+
+    public function getTotalArticle() {
+        $filter = $this->input->get('search');
+        $this->db->like('title', $filter);
+
+        return $this->db->count_all_results('article');
     }
 
     public function insertArticle($dataArticle)

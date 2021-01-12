@@ -2,7 +2,19 @@
 <?php $this->load->view('partials/header'); ?>
 
 <!-- Page Header -->
-<header class="masthead" style="background-image: url('<?php echo base_url(); ?>assets/img/home-bg.jpg')">
+<?php
+/*
+ * Mengecek ketersediaan cover. Apabila artikel memiliki cover maka akan di-
+ * tampilkan cover tersebut. Namun, bila artikel tidak memiliki cover maka
+ * yang akan ditampilkan adalah cover default
+ */
+if (!empty($article['cover'])) {
+    $cover = base_url() . 'uploads/' . $article['cover'];
+} else {
+    $cover = base_url() . 'assets/img/post-bg.jpg' . $article['cover'];
+}
+?>
+<header class="masthead" style="background-image: url('<?php echo $cover; ?>')">
     <div class="overlay"></div>
     <div class="container">
         <div class="row">
@@ -25,6 +37,10 @@
                 <p class="post-meta">Posted by
                     <a href="#"><?php echo $article['author']; ?></a>
                     on <?php echo $article['date']; ?>
+                </p>
+                <p>
+                    <a href="<?php echo site_url('article/edit/' . $article['id_article']); ?>">Edit</a> |
+                    <a href="<?php echo site_url('article/delete/' . $article['id_article']); ?>" onclick="return confirm('Delete: <?php echo $article['title']; ?>?')">Delete</a>
                 </p>
             </div>
         </div>

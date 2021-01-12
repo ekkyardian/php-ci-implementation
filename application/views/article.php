@@ -23,6 +23,20 @@
       <form action="" method="get">
         <p>
         <div class="form-group">
+          <?php
+          if ($this->session->flashdata('message-add-success')) {
+            echo "<div class='alert alert-success alert-dismissable'>";
+            echo "<button class='close' type='button' data-dismiss='alert' aria-hidden='true'>x</button>";
+            echo $this->session->flashdata('message-add-success');
+            echo "</div>";
+          }
+          elseif ($this->session->flashdata('message-add-failed')) {
+            echo "<div class='alert alert-danger alert-dismissable'>";
+            echo "<button class='close' type='button' data-dismiss='alert' aria-hidden='true'>x</button>";
+            echo $this->session->flashdata('message-add-failed');
+            echo "</div>";
+          }
+          ?>
           <label for="search">
             <h4>Search article(s) by title</h4>
           </label><br>
@@ -64,6 +78,10 @@
             <a href="<?php echo site_url('article/delete/' . $article['id_article']); ?>" onclick="return confirm('Delete: <?php echo $article['title']; ?>?')">Delete</a>
           </p>
         <?php endforeach; ?>
+
+        <hr>
+
+        <?php echo "Page: " . $this->pagination->create_links(); ?>
       </div>
     </div>
   </div>
