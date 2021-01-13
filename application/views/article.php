@@ -36,6 +36,30 @@
             echo $this->session->flashdata('message-add-failed');
             echo "</div>";
           }
+          elseif ($this->session->flashdata('message-update-success')) {
+            echo "<div class='alert alert-success alert-dismissable'>";
+            echo "<button class='close' type='button' data-dismiss='alert' aria-hidden='true'>x</button>";
+            echo $this->session->flashdata('message-update-success');
+            echo "</div>";
+          }
+          elseif ($this->session->flashdata('message-update-failed')) {
+            echo "<div class='alert alert-danger alert-dismissable'>";
+            echo "<button class='close' type='button' data-dismiss='alert' aria-hidden='true'>x</button>";
+            echo $this->session->flashdata('message-update-failed');
+            echo "</div>";
+          }
+           elseif ($this->session->flashdata('message-delete-success')) {
+            echo "<div class='alert alert-success alert-dismissable'>";
+            echo "<button class='close' type='button' data-dismiss='alert' aria-hidden='true'>x</button>";
+            echo $this->session->flashdata('message-delete-success');
+            echo "</div>";
+          }
+            elseif ($this->session->flashdata('message-delete-failed')) {
+            echo "<div class='alert alert-danger alert-dismissable'>";
+            echo "<button class='close' type='button' data-dismiss='alert' aria-hidden='true'>x</button>";
+            echo $this->session->flashdata('message-delete-failed');
+            echo "</div>";
+          }
           ?>
           <label for="search">
             <h4>Search article(s) by title</h4>

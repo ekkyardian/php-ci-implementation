@@ -176,10 +176,12 @@ class Article extends CI_Controller
             $id = $this->Article_model->updateArticle($id, $dataArticle);
 
             if ($id) {
-                echo "Data has been updated";
+               $this->session->set_flashdata('message-update-success', 'Data has been updated');
+               redirect('/');
             }
             else {
-                echo "Error! Data cannot be updated";
+                $this->session->set_flashdata('message', 'Error! Data cannot be updated');
+                redirect('/');
             }
         }
 
@@ -191,6 +193,14 @@ class Article extends CI_Controller
     public function delete($id)
     {
         $this->Article_model->deleteArticle($id);
-        redirect(site_url('article/index'));
+        
+        if ($id) {
+            $this->session->set_flashdata('message-delete-success', 'Data has been deleted');
+            redirect(site_url('/'));
+        }
+        else {
+            $this->session->flashdata('message-delete-failed', 'Error! Data cannot be deleted');
+            redirect(site_url('/'));
+        }
     }
 }
